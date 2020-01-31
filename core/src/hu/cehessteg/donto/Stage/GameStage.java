@@ -27,6 +27,7 @@ public class GameStage extends MyStage {
 
     public static final String BOOK_TEXTURE = "menu/hatter.png";
 
+
     public static AssetList assetList = new AssetList();
     static {
         assetList.collectAssetDescriptor(Gomb.class, assetList);

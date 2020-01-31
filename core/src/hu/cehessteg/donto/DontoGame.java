@@ -8,6 +8,7 @@ import hu.cehessteg.donto.Screen.IntroScreen;
 import hu.cehessteg.donto.Screen.MenuScreen;
 import hu.cehessteg.donto.Screen.RamsayScreen;
 import hu.cehessteg.donto.Stage.GameStage;
+import hu.cehessteg.donto.Stage.MyPreLoadingStage;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 
 public class DontoGame extends MyGame {
@@ -18,7 +19,7 @@ public class DontoGame extends MyGame {
 	@Override
 	public void create() {
 		super.create();
-		setScreen(new GameScreen(this), true);
+		setScreen(new IntroScreen(this), true);
 		GameStage.currentID = 1;
 	}
 }

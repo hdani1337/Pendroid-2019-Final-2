@@ -162,13 +162,13 @@ public class MenuStage extends MyStage {
         Cim.setPosition(300,1000);
 
         Start.setPosition(300,800);
-        Start.setFontScale(1.7f);
+        Start.setFontScale(1.5f);
 
         Infok.setPosition(300,525);
-        Infok.setFontScale(1.7f);
+        Infok.setFontScale(1.5f);
 
         Kilepes.setPosition(270,250);
-        Kilepes.setFontScale(1.7f);
+        Kilepes.setFontScale(1.5f);
 
 
 
