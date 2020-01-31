@@ -20,7 +20,7 @@ public class Kerdes {
 
     public void setValaszok(){
         if(id == 0){
-            kerdes = "Mi az, négy lába van, asztal de nem szék?";
+            kerdes = "Mi az, négy lába van,\nasztal de nem szék?";
             valasz1 = "Szék";
             valasz2 = "Asztal";
             valasz3 = "Kecske";
