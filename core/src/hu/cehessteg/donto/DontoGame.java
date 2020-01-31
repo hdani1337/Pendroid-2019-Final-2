@@ -13,6 +13,6 @@ public class DontoGame extends MyGame {
 	@Override
 	public void create() {
 		super.create();
-		setScreen(new GameScreen(this), false);
+		setScreen(new MenuScreen(this), false);
 	}
 }

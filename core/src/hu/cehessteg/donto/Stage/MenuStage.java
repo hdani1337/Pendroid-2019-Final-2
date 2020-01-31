@@ -3,39 +3,42 @@ package hu.cehessteg.donto.Stage;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import hu.cehessteg.donto.Actor.Gomb;
+import hu.cehessteg.donto.Screen.GameScreen;
+import hu.cehessteg.donto.Screen.InfoScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyScreen;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
+import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
 import static hu.cehessteg.donto.Actor.Gomb.trebuc;
 
 public class MenuStage extends MyStage {
     public static AssetList assetList = new AssetList();
+    public static String trebuc = "fonts/handbold.otf";
+    public static String  trebuc2 = "fonts/hand.otf";
     public static final String HATTER_MENU = "menu/hatter_menu.png";
     public static final String GOMB_Z = "other/valasz_zold.png";
     public static final String GOMB_P = "other/valasz_piros.png";
     public static final String GOMB_K = "other/valasz.png";
-    public static final String CSANY_LOG = "logos/csany.png";
-    public static final String CEHESSTEG_LOG = "logos/cehessteg.png";
-    public static final String PENDROID_LOG = "logos/pendroid.png";
+
 
 
 
     static {
-        assetList.addFont(trebuc, trebuc, 120, Color.WHITE, AssetList.CHARS);
-
+        assetList.addFont(trebuc, trebuc, 120, Color.BLACK, AssetList.CHARS);
+        assetList.addFont(trebuc2, trebuc2, 80, Color.WHITE, AssetList.CHARS);
         assetList.addTexture(HATTER_MENU);
         assetList.addTexture(GOMB_Z);
         assetList.addTexture(GOMB_P);
         assetList.addTexture(GOMB_K);
-        assetList.addTexture(CSANY_LOG);
-        assetList.addTexture(CEHESSTEG_LOG);
-        assetList.addTexture(PENDROID_LOG);
+
+
     }
 
 
@@ -43,9 +46,11 @@ public class MenuStage extends MyStage {
     private OneSpriteStaticActor gombZ;
     private OneSpriteStaticActor gombP;
     private OneSpriteStaticActor gombK;
-    private OneSpriteStaticActor csany;
-    private OneSpriteStaticActor cehessteg;
-    private OneSpriteStaticActor pendroid;
+
+    private MyLabel Cim;
+    private MyLabel Start;
+    private MyLabel Infok;
+    private MyLabel Kilepes;
 
 
 
@@ -75,15 +80,62 @@ public class MenuStage extends MyStage {
 
         //Logos
 
-        csany = new OneSpriteStaticActor(game,CSANY_LOG);
-        cehessteg = new OneSpriteStaticActor(game,CEHESSTEG_LOG);
-        pendroid = new OneSpriteStaticActor(game,PENDROID_LOG);
+
+
+        //Labelek
+
+        Cim = new MyLabel(game,"Notes",new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
+            @Override
+            public void init() {
+
+            }
+        };
+
+        Start = new MyLabel(game,"Start",new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.WHITE)) {
+            @Override
+            public void init() {
+
+            }
+        };
+
+        Infok = new MyLabel(game,"Infók",new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.WHITE)) {
+            @Override
+            public void init() {
+
+            }
+        };
+
+        Kilepes = new MyLabel(game,"Kilépés",new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.WHITE)) {
+            @Override
+            public void init() {
+
+            }
+        };
+
+
 
 
     }
 
     void addListeners(){
-        //KILÉPÉS LISTENER
+
+        gombZ.addListener(new ClickListener(){
+
+            public void clicked(InputEvent event,float x, float y){
+                super.clicked(event,x,y);
+                game.setScreenWithPreloadAssets(GameScreen.class, new MyPreLoadingStage(game));
+            }
+        });
+
+        gombK.addListener(new ClickListener(){
+
+            public void clicked(InputEvent event,float x, float y){
+                super.clicked(event,x,y);
+                game.setScreenWithPreloadAssets(InfoScreen.class, new MyPreLoadingStage(game));
+            }
+        });
+
+
         gombP.addListener(new ClickListener(){
 
             public void clicked(InputEvent event,float x, float y){
@@ -91,6 +143,7 @@ public class MenuStage extends MyStage {
                 Gdx.app.exit();
             }
         });
+
     }
 
 
@@ -100,18 +153,25 @@ public class MenuStage extends MyStage {
 
         //Gombok
         gombZ.setSize(gombZ.getWidth()/2,gombZ.getHeight()/2);
-        gombZ.setPosition(200,750);
+        gombZ.setPosition(210,750);
 
         gombP.setSize(gombP.getWidth()/2,gombP.getHeight()/2);
-        gombP.setPosition(200,200);
+        gombP.setPosition(210,200);
 
         gombK.setSize(gombK.getWidth()/2,gombK.getHeight()/2);
-        gombK.setPosition(200,475);
+        gombK.setPosition(210,475);
 
-        //Logos
+        //Labels
 
-        csany.setSize(csany.getWidth()/1.7f,csany.getHeight()/1.7f);
-        csany.setPosition(100,50);
+        Cim.setPosition(300,1000);
+        Start.setPosition(300,800);
+        Start.setFontScale(1.7f);
+        Infok.setPosition(300,525);
+        Infok.setFontScale(1.7f);
+        Kilepes.setPosition(270,250);
+        Kilepes.setFontScale(1.7f);
+
+
 
     }
 
@@ -120,9 +180,10 @@ public class MenuStage extends MyStage {
         addActor(gombZ);
         addActor(gombP);
         addActor(gombK);
-        addActor(csany);
-        addActor(cehessteg);
-        addActor(pendroid);
+        addActor(Cim);
+        addActor(Start);
+        addActor(Infok);
+        addActor(Kilepes);
 
     }
 
@@ -142,9 +203,12 @@ public class MenuStage extends MyStage {
         gombZ.setAlpha(alpha);
         gombP.setAlpha(alpha);
         gombK.setAlpha(alpha);
-        csany.setAlpha(alpha);
-        cehessteg.setAlpha(alpha);
-        pendroid.setAlpha(alpha);
+        Cim.setColor(1,1,1,alpha);
+        Start.setColor(1,1,1,alpha);
+        Infok.setColor(1,1,1,alpha);
+        Kilepes.setColor(1,1,1,alpha);
+
+
 
     }
 
