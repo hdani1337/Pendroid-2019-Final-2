@@ -49,7 +49,7 @@ public class Kerdes {
             valasz2 = "Kék";//piros háttér
             valasz3 = "Lila";//Lila háttér
             valasz4 = "Piros";//Zöld háttér
-            helyesID = 1;
+            helyesID = 2;
         }
         else if(id == 4){
             kerdes = "Melyik a gyorsabb?";
