@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
+import hu.cehessteg.donto.Stage.GameStage;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -65,7 +66,9 @@ public class Vezetek extends OneSpriteStaticActor {
     }
 
     public void szakad(String szin){
-        sprite.setTexture(game.getMyAssetManager().getTexture(getHash(true, szin)));
+        if(GameStage.isAct) {
+            sprite.setTexture(game.getMyAssetManager().getTexture(getHash(true, szin)));
+        }
     }
 
     private void addListeners(final String szin){
