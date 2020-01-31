@@ -13,9 +13,9 @@ import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
+import static hu.cehessteg.donto.Actor.Gomb.trebuc;
 import static hu.cehessteg.donto.Stage.GameStage.isAct;
 import static hu.cehessteg.donto.Stage.GameStage.isDead;
-import static hu.cehessteg.donto.Stage.MenuStage.trebuc;
 
 public class GameOverStage extends MyStage {
 

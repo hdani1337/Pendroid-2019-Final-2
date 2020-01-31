@@ -1,27 +1,36 @@
 package hu.cehessteg.donto;
 
+
 import java.util.ArrayList;
 
 public class Kerdes {
+    public static ArrayList<String> kerdesek = new ArrayList<>();
     public int id;
-    public static ArrayList<String> kerdesek;
-    public static ArrayList<Valasz> valaszokList;
+    public String kerdes;
+    public int helyesID;
+
+    public String valasz1;
+    public String valasz2;
+    public String valasz3;
+    public String valasz4;
 
     public Kerdes(int id){
         this.id = id-1;
-        addQuestions();
+        setValaszok();
     }
 
-    private void addQuestions(){
-        kerdesek = new ArrayList<>();
-        /**
-         * ADDING QUESTIONS HERE
-         * **/
+    public static void addQuestions(){
+        kerdesek.add("Mi az, négy lába van, asztal de nem szék?");
+    }
 
-        /**
-         * FILL UP VALASZOK ARRAYLIST HERE
-         * **/
-        for (int i = 0; i < kerdesek.size(); i++)
-            valaszokList.add(new Valasz(this));
+    public void setValaszok(){
+        switch (id){
+            case 1:{
+                valasz1 = "Szék";
+                valasz2 = "Asztal";
+                valasz3 = "Kecske";
+                valasz4 = "Attila";
+            }
+        }
     }
 }

@@ -11,8 +11,9 @@ import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 
+import static hu.cehessteg.donto.Actor.Gomb.trebuc;
+
 public class MenuStage extends MyStage {
-    public static String trebuc = "other/trebuc.ttf";
     public static AssetList assetList = new AssetList();
     public static final String EXIT = "menu/exit.png";
     public static final String OPTIONS_TEXTURE = "menu/options.png";

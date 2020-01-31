@@ -17,8 +17,8 @@ import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
+import static hu.cehessteg.donto.Actor.Gomb.trebuc;
 import static hu.cehessteg.donto.Stage.GameOverStage.BLANK_TEXTURE;
-import static hu.cehessteg.donto.Stage.MenuStage.trebuc;
 
 public class InfoStage extends MyStage {
     public static final String ZOLI_KEP = "portraits/zoli.png";

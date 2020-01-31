@@ -13,7 +13,7 @@ import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
-import static hu.cehessteg.donto.Stage.MenuStage.trebuc;
+import static hu.cehessteg.donto.Actor.Gomb.trebuc;
 import static hu.cehessteg.donto.Stage.MyPreLoadingStage.CSAPAT_TEXTURE;
 
 public class IntroStage extends MyStage {
@@ -30,7 +30,6 @@ public class IntroStage extends MyStage {
         assetList.addTexture(PENDROID_TEXTURE);
         assetList.addTexture(CSAPAT_TEXTURE).protect = true;
         assetList.addFont(trebuc, trebuc, 120, Color.WHITE, AssetList.CHARS);
-        assetList.collectAssetDescriptor(Gomb.class, assetList);
     }
 
     private OneSpriteStaticActor gdxLogo;
