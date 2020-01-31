@@ -109,10 +109,32 @@ public class GameStage extends MyStage {
         if (isAct) {//Az isAct változó false lesz, ha a játékos veszít vagy megállítja, így ezek nem futnak le feleslegesen
             if(prevID != currentID){
                 kerdes = new Kerdes(currentID);
+                kerdesLabel.remove();
+                gombBalF.remove();
+                gombJobbF.remove();
+                gombJobbA.remove();
+                gombBalA.remove();
+                kerdesLabel = new MyLabel(game, kerdes.kerdes, new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
+                    @Override
+                    public void init() {
+                        setFontScale(0.7f);
+                        setAlignment(0);
+                        setPosition(getViewport().getWorldWidth()/2-getWidth()/2,getViewport().getWorldHeight()*0.7f);
+                    }
+                };
                 gombBalF = new Gomb(game, kerdes, 1);
                 gombBalA = new Gomb(game, kerdes, 3);
                 gombJobbF = new Gomb(game, kerdes, 2);
                 gombJobbA = new Gomb(game, kerdes, 4);
+                gombBalF.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.4f);
+                gombBalA.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.2f);
+                gombJobbA.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.4f);
+                gombJobbF.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.2f);
+                addActor(kerdesLabel);
+                addActor(gombBalF);
+                addActor(gombBalA);
+                addActor(gombJobbA);
+                addActor(gombJobbF);
                 prevID = currentID;
             }
         }

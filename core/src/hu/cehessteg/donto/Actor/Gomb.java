@@ -61,7 +61,7 @@ public class Gomb extends MyGroup {
                     gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_BAD));
                     GameStage.lives--;
                 }
-                //2mp múlva következő kérdés
+                //1mp múlva következő kérdés
                 gombActor.addTimer(new TickTimer(1f, false, new TickTimerListener() {
                     @Override
                     public void onTick(Timer sender, float correction) {
