@@ -21,12 +21,16 @@ public class Gomb extends MyGroup {
 
     public static String trebuc = "DK Lemon Yellow Sun.otf";
     public static final String GOMB_TEXTURE = "other/valasz.png";
+    public static final String GOMB_TEXTURE_GOOD = "other/valasz_zold.png";
+    public static final String GOMB_TEXTURE_BAD = "other/valasz_piros.png";
 
     public static AssetList assetList;
 
     static {
         assetList = new AssetList();
         assetList.addTexture(GOMB_TEXTURE);
+        assetList.addTexture(GOMB_TEXTURE_BAD);
+        assetList.addTexture(GOMB_TEXTURE_GOOD);
         assetList.addFont(trebuc, trebuc, 80, Color.WHITE, AssetList.CHARS);
     }
 
@@ -46,19 +50,19 @@ public class Gomb extends MyGroup {
     }
 
     private void addListener() {
-        if (gombLabel != null) gombLabel.setTouchable(null);
-        addListener(new ClickListener() {
+        gombLabel.setTouchable(null);
+        gombActor.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 if(kerdes.helyesID == gombID){
-                    //ZÖLD TEXTURE
+                    gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_GOOD));
                 }else {
-                    //PIROS
+                    gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_BAD));
                     GameStage.lives--;
                 }
                 //2mp múlva következő kérdés
-                gombActor.addTimer(new TickTimer(2f, false, new TickTimerListener() {
+                gombActor.addTimer(new TickTimer(1f, false, new TickTimerListener() {
                     @Override
                     public void onTick(Timer sender, float correction) {
                         super.onTick(sender, correction);
@@ -72,7 +76,7 @@ public class Gomb extends MyGroup {
     private void assignment() {
         gombActor = new OneSpriteStaticActor(game, GOMB_TEXTURE);
 
-        gombLabel = new MyLabel(game, "", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
+        gombLabel = new MyLabel(game, "", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
             @Override
             public void init() {
                 setAlignment(0);

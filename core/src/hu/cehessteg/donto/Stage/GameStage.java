@@ -10,6 +10,7 @@ import hu.cehessteg.donto.Kerdes;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
@@ -17,17 +18,17 @@ import static hu.cehessteg.donto.Actor.Gomb.trebuc;
 
 public class GameStage extends MyStage {
 
+    public static final String BOOK_TEXTURE = "menu/hatter.png";
+
     public static AssetList assetList = new AssetList();
     static {
         assetList.collectAssetDescriptor(Gomb.class, assetList);
+        assetList.addTexture(BOOK_TEXTURE);
         assetList.addFont(trebuc, trebuc, 80, Color.WHITE, AssetList.CHARS);
     }
 
-    private Kerdes kerdesClass = new Kerdes(1);
-
     //STATIKUS VÁLTOZÓK
     public static boolean isAct;
-    public static boolean isDead;
 
     private Gomb gombBalF;
     private Gomb gombJobbF;
@@ -42,6 +43,8 @@ public class GameStage extends MyStage {
 
     public static ArrayList<Kerdes> kerdesek;
 
+    private static OneSpriteStaticActor background;
+
     public GameStage(MyGame game) {
         super(new ResponseViewport(900), game);
         assignment();
@@ -52,17 +55,19 @@ public class GameStage extends MyStage {
     private void assignment()
     {
         isAct = true;
-        isDead = false;
 
         lives = 3;
         currentID = 1;
 
+        background = new OneSpriteStaticActor(game, BOOK_TEXTURE);
+
         kerdesek = new ArrayList<>();
         kerdes = new Kerdes(currentID);
 
-        kerdesLabel = new MyLabel(game, kerdes.kerdes, new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        kerdesLabel = new MyLabel(game, kerdes.kerdes, new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
             @Override
             public void init() {
+                setFontScale(0.7f);
                 setAlignment(0);
                 setPosition(getViewport().getWorldWidth()/2-getWidth()/2,getViewport().getWorldHeight()*0.7f);
             }
@@ -77,16 +82,18 @@ public class GameStage extends MyStage {
     private void setSizesAndPositions()
     {
         /**SIZES**/
+        background.setSize(getViewport().getWorldWidth(), getViewport().getWorldHeight());
 
         /**POSITIONS**/
-        gombBalF.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.5f);
+        gombBalF.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.4f);
         gombBalA.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.2f);
-        gombJobbA.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.5f);
+        gombJobbA.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.4f);
         gombJobbF.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.2f);
     }
 
     private void addActors()
     {
+        addActor(background);
         addActor(kerdesLabel);
         addActor(gombBalF);
         addActor(gombBalA);
@@ -106,6 +113,7 @@ public class GameStage extends MyStage {
                 gombBalA = new Gomb(game, kerdes, 3);
                 gombJobbF = new Gomb(game, kerdes, 2);
                 gombJobbA = new Gomb(game, kerdes, 4);
+                prevID = currentID;
             }
         }
         else{

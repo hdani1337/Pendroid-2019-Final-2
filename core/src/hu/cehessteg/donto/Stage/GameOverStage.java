@@ -15,7 +15,6 @@ import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
 import static hu.cehessteg.donto.Actor.Gomb.trebuc;
 import static hu.cehessteg.donto.Stage.GameStage.isAct;
-import static hu.cehessteg.donto.Stage.GameStage.isDead;
 
 public class GameOverStage extends MyStage {
 
@@ -98,7 +97,7 @@ public class GameOverStage extends MyStage {
     @Override
     public void act(float delta) {
 
-        if (!isAct && isDead){
+        if (!isAct){
             if(!addedActors){
                 addActor(black);
                 addActor(text);
