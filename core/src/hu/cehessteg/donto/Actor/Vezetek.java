@@ -68,6 +68,9 @@ public class Vezetek extends OneSpriteStaticActor {
     public void szakad(String szin){
         if(GameStage.isAct) {
             sprite.setTexture(game.getMyAssetManager().getTexture(getHash(true, szin)));
+            if(szin != "kék" && szin != "piros"){
+                GameStage.isAct = false;
+            }
         }
     }
 

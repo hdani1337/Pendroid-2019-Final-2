@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.donto.Actor.Explosion;
 import hu.cehessteg.donto.Actor.Vezetek;
+import hu.cehessteg.donto.Screen.GameScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
@@ -18,16 +19,23 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
+import static hu.cehessteg.donto.Actor.Gomb.trebuc;
+import static hu.cehessteg.donto.Actor.Vezetek.KEK_CUT;
+import static hu.cehessteg.donto.Actor.Vezetek.PIROS_CUT;
+
 public class BombStage extends MyStage {
 
     public static final String BOMBA_TEXTURE = "other/bomba.png";
+    public static final String BOMBADEF_TEXTURE = "other/bomb_def.png";
     public static final String DIGITAL = "fonts/digital.ttf";
 
     public static AssetList assetList = new AssetList();
     static {
         assetList.collectAssetDescriptor(Vezetek.class, assetList);
         assetList.addTexture(BOMBA_TEXTURE);
+        assetList.addTexture(BOMBADEF_TEXTURE);
         assetList.addFont(DIGITAL, DIGITAL, 80, Color.WHITE, AssetList.CHARS);
+        assetList.addFont(trebuc, trebuc, 80, Color.BLACK, AssetList.CHARS);
     }
 
     Vezetek piros;
@@ -37,7 +45,9 @@ public class BombStage extends MyStage {
     Vezetek lila;
 
     OneSpriteStaticActor bomba;
+    OneSpriteStaticActor bombaBG;
     MyLabel clock;
+    MyLabel elvagando;
 
     public BombStage(MyGame game) {
         super(new ResponseViewport(800), game);
@@ -51,6 +61,7 @@ public class BombStage extends MyStage {
     private void assignment(){
         GameStage.isAct = true;
         bomba = new OneSpriteStaticActor(game, BOMBA_TEXTURE);
+        bombaBG = new OneSpriteStaticActor(game, BOMBADEF_TEXTURE);
         piros = new Vezetek(game,"piros");
         kek = new Vezetek(game,"kék");
         zold = new Vezetek(game,"zöld");
@@ -84,6 +95,15 @@ public class BombStage extends MyStage {
                 }
             }
         };
+
+        elvagando = new MyLabel(game,"Zöld\n\nSárga\n\nLila", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
+            @Override
+            public void init() {
+                setAlignment(0);
+                setFontScale(0.7f);
+                setPosition(getViewport().getWorldWidth()*0.72f, getViewport().getWorldHeight()*0.25f);
+            }
+        };
     }
 
     private void setPositions(){
@@ -101,6 +121,7 @@ public class BombStage extends MyStage {
     }
 
     private void addActors(){
+        addActor(bombaBG);
         addActor(bomba);
         addActor(piros);
         addActor(kek);
@@ -108,6 +129,16 @@ public class BombStage extends MyStage {
         addActor(sarga);
         addActor(lila);
         addActor(clock);
+        addActor(elvagando);
     }
 
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if(piros.getTexture() == game.getMyAssetManager().getTexture(PIROS_CUT) && kek.getTexture() == game.getMyAssetManager().getTexture(KEK_CUT))
+        {
+            game.setScreenWithPreloadAssets(GameScreen.class, new MyPreLoadingStage(game));
+            GameStage.currentID = 11;
+        }
+    }
 }
