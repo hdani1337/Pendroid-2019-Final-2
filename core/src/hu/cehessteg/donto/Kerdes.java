@@ -29,11 +29,11 @@ public class Kerdes {
         }
         else if(id == 1){
             kerdes = "Hány kutyavásár volt\nBudán a rege szerint?";
-            valasz1 = "Kettő";
+            valasz1 = "Kettö";
             valasz2 = "Egy se";
             valasz3 = "Három";
             valasz4 = "Több mint száz";
-            helyesID = 0;//kérdésszáma
+            helyesID = 0;//
         }
         else if(id == 2){
             kerdes = "Nyomj rá a pontra.";
@@ -84,7 +84,7 @@ public class Kerdes {
             helyesID = 0;//kissebb-nagyobb pontok lesznek, de a kérdésben az i pontjára kellene rányomni...
         }
         else if(id == 10){
-            kerdes = "Ha van 6 almám és elveszel\nbelőle 4-et,\nakkor hány almád lesz?";
+            kerdes = "Ha van 6 almám és elveszel\nbelöle 4-et,\nakkor hány almád lesz?";
             valasz1 = "-2";
             valasz2 = "2";
             valasz3 = "-6";
@@ -99,6 +99,31 @@ public class Kerdes {
             valasz4 = "152szer";
             helyesID = 2;
         }
+        else if(id == 13){
+            kerdes = "Mit loptak el az oroszok?";
+            valasz1 = "Kombináltfogót";
+            valasz2 = "Tankot";
+            valasz3 = "Karácsonyt";
+            valasz4 = "Szását";
+            helyesID = 2;
+        }
+        else if(id == 14){
+            kerdes = "Hányadik kérdés ez?";
+            valasz1 = "14.";
+            valasz2 = "15.";
+            valasz3 = "16.";
+            valasz4 = "13.";
+            helyesID = 1;//nincs kérdésszám feltüntetve!!
+        }
+        else if(id == 15){
+            kerdes = "Keresd a hibát!";
+            valasz1 = "42";
+            valasz2 = "Gyógyszerész";
+            valasz3 = "Farkas";
+            valasz4 = "Java";
+            helyesID = 0;//lehetőleg fejjel lefelé legyen a kérdés száma feltüntetve, ha nem akkor csak 51.
+        }//hiányzik az 5,9,12
+
 
     }
 }

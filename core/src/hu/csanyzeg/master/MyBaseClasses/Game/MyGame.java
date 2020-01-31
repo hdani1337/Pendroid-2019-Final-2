@@ -9,6 +9,7 @@ import hu.csanyzeg.master.MyBaseClasses.Assets.LoadingListener;
 import hu.csanyzeg.master.MyBaseClasses.Assets.LoadingStage;
 import hu.csanyzeg.master.MyBaseClasses.Assets.MyAssetManager;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyScreen;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Stack;
@@ -27,7 +28,7 @@ abstract public class MyGame extends Game {
         this.debug = debug;
     }
 
-    public MyGame() {
+    public MyGame(ResponseViewport responseViewport, MyGame game) {
         debug = false;
     }
 
