@@ -1,7 +1,9 @@
 package hu.cehessteg.donto.Stage;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import java.util.ArrayList;
 
@@ -12,6 +14,9 @@ import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
+import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimer;
+import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
+import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
 import static hu.cehessteg.donto.Actor.Gomb.trebuc;
@@ -29,6 +34,7 @@ public class GameStage extends MyStage {
 
     //STATIKUS VÁLTOZÓK
     public static boolean isAct;
+    public static boolean isClicked;
 
     private Gomb gombBalF;
     private Gomb gombJobbF;
@@ -37,6 +43,8 @@ public class GameStage extends MyStage {
 
     private Kerdes kerdes;
     private MyLabel kerdesLabel;
+
+    private MyLabel kerdesSzam;
 
     public static int currentID;
     public static int lives;
@@ -55,6 +63,7 @@ public class GameStage extends MyStage {
     private void assignment()
     {
         isAct = true;
+        isClicked = false;
 
         lives = 3;
         currentID = 1;
@@ -63,6 +72,13 @@ public class GameStage extends MyStage {
 
         kerdesek = new ArrayList<>();
         kerdes = new Kerdes(currentID);
+
+        kerdesSzam = new MyLabel(game, kerdes.id + "", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
+            @Override
+            public void init() {
+
+            }
+        };
 
         kerdesLabel = new MyLabel(game, kerdes.kerdes, new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
             @Override
@@ -89,6 +105,8 @@ public class GameStage extends MyStage {
         gombBalA.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.2f);
         gombJobbA.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.4f);
         gombJobbF.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.2f);
+
+        kerdesSzam.setPosition(getViewport().getWorldWidth()-50, getViewport().getWorldHeight()*0.85f);
     }
 
     private void addActors()
@@ -99,6 +117,7 @@ public class GameStage extends MyStage {
         addActor(gombBalA);
         addActor(gombJobbA);
         addActor(gombJobbF);
+        addActor(kerdesSzam);
     }
 
     private int prevID;
@@ -109,6 +128,7 @@ public class GameStage extends MyStage {
         if (isAct) {//Az isAct változó false lesz, ha a játékos veszít vagy megállítja, így ezek nem futnak le feleslegesen
             if(prevID != currentID){
                 setStuff();
+                third();
                 prevID = currentID;
             }
             if(lives == 0) isAct = false;
@@ -116,6 +136,7 @@ public class GameStage extends MyStage {
     }
 
     private void setStuff(){
+        isClicked = false;
         kerdes = new Kerdes(currentID);
         kerdesLabel.remove();
         gombBalF.remove();
@@ -143,5 +164,26 @@ public class GameStage extends MyStage {
         addActor(gombBalA);
         addActor(gombJobbA);
         addActor(gombJobbF);
+    }
+
+    private void third(){
+        if(kerdes.id == 2){
+            kerdesLabel.addListener(new ClickListener(){
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    super.clicked(event, x, y);
+                    if(x > 600 && x < 680 && y > 0 && y < 50){
+                        addTimer(new TickTimer(0, false, new TickTimerListener() {
+                            @Override
+                            public void onTick(Timer sender, float correction) {
+                                super.onTick(sender, correction);
+                                currentID++;
+                                isClicked = false;
+                            }
+                        }));
+                    }
+                }
+            });
+        }
     }
 }
