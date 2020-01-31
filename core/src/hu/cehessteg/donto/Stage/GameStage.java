@@ -73,10 +73,12 @@ public class GameStage extends MyStage {
         kerdesek = new ArrayList<>();
         kerdes = new Kerdes(currentID);
 
+
+
         kerdesSzam = new MyLabel(game, kerdes.id + "", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
             @Override
             public void init() {
-
+                if (kerdes.id == 14) kerdesSzam.setText("??.");
             }
         };
 
@@ -129,6 +131,7 @@ public class GameStage extends MyStage {
             if(prevID != currentID){
                 setStuff();
                 third();
+                if (currentID == 15) utso();
                 prevID = currentID;
             }
             if(lives == 0) isAct = false;
@@ -185,5 +188,26 @@ public class GameStage extends MyStage {
                 }
             });
         }
+    }
+
+    private void utso(){
+        kerdesSzam.setRotation(180);
+        kerdesSzam.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                if(x > kerdesSzam.getX() && x < kerdesSzam.getX() + kerdesSzam.getWidth() && y > kerdesSzam.getY() && y < kerdesSzam.getY() + kerdesSzam.getHeight()){
+                    addTimer(new TickTimer(0, false, new TickTimerListener() {
+                        @Override
+                        public void onTick(Timer sender, float correction) {
+                            super.onTick(sender, correction);
+                            currentID++;
+                            isClicked = false;
+                        }
+                    }));
+                }
+            }
+        });
+
     }
 }
