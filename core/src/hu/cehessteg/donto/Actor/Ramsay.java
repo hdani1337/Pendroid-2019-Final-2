@@ -21,6 +21,11 @@ public class Ramsay extends OneSpriteStaticActor {
     public static final String RAMSAY_4 = "ramsay/ramsay4.png";
     public static final String RAMSAY_5 = "ramsay/ramsay5.png";
 
+    public static final String RAMSAY_2S = "ramsay/Ramsay_1.mp3";
+    public static final String RAMSAY_3S = "ramsay/Ramsay_2.mp3";
+    public static final String RAMSAY_4S = "ramsay/Ramsay_3.mp3";
+    public static final String RAMSAY_5S = "ramsay/Ramsay_4.mp3";
+
     public static AssetList assetList;
     static {
         assetList = new AssetList();
@@ -29,9 +34,14 @@ public class Ramsay extends OneSpriteStaticActor {
         assetList.addTexture(RAMSAY_3);
         assetList.addTexture(RAMSAY_4);
         assetList.addTexture(RAMSAY_5);
+
+        assetList.addSound(RAMSAY_2S);
+        assetList.addSound(RAMSAY_3S);
+        assetList.addSound(RAMSAY_4S);
+        assetList.addSound(RAMSAY_5S);
     }
 
-    byte rage = 0;
+    public byte rage = 0;
 
     public Ramsay(MyGame game) {
         super(game, RAMSAY_1);
@@ -44,14 +54,27 @@ public class Ramsay extends OneSpriteStaticActor {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 rage++;
-                if(rage >= 40) addTimer(new TickTimer(1,true,new TickTimerListener(){
-                    @Override
-                    public void onTick(Timer sender, float correction) {
-                        super.onTick(sender, correction);
-                        GameStage.currentID = 14;
-                        game.setScreenWithPreloadAssets(GameScreen.class, new MyPreLoadingStage(game));
-                    }
-                }));
+                if(rage >= 40) {
+                    addTimer(new TickTimer(2, true, new TickTimerListener() {
+                        @Override
+                        public void onTick(Timer sender, float correction) {
+                            super.onTick(sender, correction);
+                            GameStage.currentID = 14;
+                            game.setScreenWithPreloadAssets(GameScreen.class, new MyPreLoadingStage(game));
+                        }
+
+                    }));
+                    game.getMyAssetManager().getSound(RAMSAY_5S).play();
+                }
+                else if(rage >= 30) {
+                    game.getMyAssetManager().getSound(RAMSAY_4S).play();
+                }
+                else if (rage >= 20) {
+                    game.getMyAssetManager().getSound(RAMSAY_3S).play();
+                }
+                else if (rage >= 10) {
+                    game.getMyAssetManager().getSound(RAMSAY_2S).play();
+                }
             }
         });
     }

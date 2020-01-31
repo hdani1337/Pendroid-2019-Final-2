@@ -48,6 +48,7 @@ public class GameStage extends MyStage {
     private MyLabel kerdesLabel;
 
     private MyLabel kerdesSzam;
+    private MyLabel Életszám;
 
     public static int currentID;
     public static int lives;
@@ -75,7 +76,17 @@ public class GameStage extends MyStage {
         kerdesek = new ArrayList<>();
         kerdes = new Kerdes(currentID);
 
+        Életszám = new MyLabel(game, "Életek száma: " + lives, new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
+            @Override
+            public void init() {
+                setFontScale(0.5f);
+                setPosition(12f,getViewport().getWorldHeight()*0.855f);
+            }
 
+            @Override
+            public void act(float delta) {
+            }
+        };
 
         kerdesSzam = new MyLabel(game, kerdes.id + "", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
             @Override
@@ -126,6 +137,7 @@ public class GameStage extends MyStage {
     private void addActors()
     {
         addActor(background);
+        addActor(Életszám);
         addActor(kerdesLabel);
         addActor(gombBalF);
         addActor(gombBalA);
@@ -145,6 +157,7 @@ public class GameStage extends MyStage {
                 second();
                 third();
                 eigth();
+                Életszám.setText("Életek száma: " + lives);
                 if(currentID == 10) game.setScreenWithPreloadAssets(BombScreen.class, new MyPreLoadingStage(game));
                 if(currentID == 13) game.setScreenWithPreloadAssets(RamsayScreen.class, new MyPreLoadingStage(game));
                 if (currentID == 15) utso();
