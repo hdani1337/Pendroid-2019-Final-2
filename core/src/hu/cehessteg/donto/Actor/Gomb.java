@@ -33,12 +33,12 @@ public class Gomb extends MyGroup {
     public OneSpriteStaticActor gombActor;
     public MyLabel gombLabel;
     public int gombID;
-    public int kerdesID;
+    private Kerdes kerdes;
 
-    public Gomb(MyGame game, Kerdes kerdes) {
+    public Gomb(MyGame game, Kerdes kerdes, int id) {
         super(game);
-        //this.gombID = id;
-        this.kerdesID = kerdesID;
+        this.gombID = id;
+        this.kerdes = kerdes;
         assignment();
         setPositions();
         addListener();
@@ -51,12 +51,12 @@ public class Gomb extends MyGroup {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                /*if(){
+                if(kerdes.helyesID == gombID){
                     //ZÖLD TEXTURE
                 }else {
                     //PIROS
                     GameStage.lives--;
-                }*/
+                }
                 //2mp múlva következő kérdés
                 gombActor.addTimer(new TickTimer(2f, false, new TickTimerListener() {
                     @Override
@@ -82,9 +82,21 @@ public class Gomb extends MyGroup {
     }
 
     private String text(){
-        switch (kerdesID){
+        switch (gombID){
             case 1:{
+                return kerdes.valasz1;
+            }
 
+            case 2:{
+                return kerdes.valasz2;
+            }
+
+            case 3:{
+                return kerdes.valasz3;
+            }
+
+            case 4:{
+                return kerdes.valasz4;
             }
 
             default: return "";
@@ -92,6 +104,8 @@ public class Gomb extends MyGroup {
     }
 
     private void setPositions() {
+        gombActor.setSize(gombActor.getWidth()/2,gombActor.getHeight()/2);
+        gombLabel.setFontScale(0.5f);
         gombActor.setPosition(0, 0);
         gombLabel.setPosition(gombActor.getX() + gombActor.getWidth() / 2 - gombLabel.getWidth() / 2, gombActor.getY() + gombActor.getHeight() / 2 - gombLabel.getHeight() / 2);
     }

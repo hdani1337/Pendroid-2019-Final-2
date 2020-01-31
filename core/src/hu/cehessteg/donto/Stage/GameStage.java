@@ -68,10 +68,10 @@ public class GameStage extends MyStage {
             }
         };
 
-        /*gombBalF = new Gomb(game, kerdes.valasz1, currentID);
-        gombBalA = new Gomb(game, kerdes.valasz3, currentID);
-        gombJobbF = new Gomb(game, kerdes.valasz2, currentID);
-        gombJobbA = new Gomb(game, kerdes.valasz4, currentID);*/
+        gombBalF = new Gomb(game, kerdes, 1);
+        gombBalA = new Gomb(game, kerdes, 3);
+        gombJobbF = new Gomb(game, kerdes, 2);
+        gombJobbA = new Gomb(game, kerdes, 4);
     }
 
     private void setSizesAndPositions()
@@ -81,8 +81,8 @@ public class GameStage extends MyStage {
         /**POSITIONS**/
         /*kerdes.setAlignment(0);
         kerdes.setPosition(getViewport().getWorldWidth()/2-kerdes.getWidth()/2,getViewport().getWorldHeight()*0.7f);*/
-        gombBalF.setPosition(getViewport().getWorldWidth()/2-gombBalF.getWidth()-30, getViewport().getWorldHeight()*0.5f);
-        gombBalA.setPosition(getViewport().getWorldWidth()/2-gombBalF.getWidth()-30, getViewport().getWorldHeight()*0.2f);
+        gombBalF.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.5f);
+        gombBalA.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.2f);
         gombJobbA.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.5f);
         gombJobbF.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.2f);
     }
