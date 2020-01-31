@@ -30,7 +30,7 @@ public class InfoStage extends MyStage {
 
     static {
         assetList.addTexture(ZOLI_KEP);
-        assetList.addTexture(BENCE_KEP);
+        assetList.addTexture(BENCE_KEP);                //Ujra kell majd csinalni a pozíciokat!
         assetList.addTexture(DANI_KEP);
         assetList.addTexture(DAVID_KEP);
         assetList.addTexture(BLANK_TEXTURE);
