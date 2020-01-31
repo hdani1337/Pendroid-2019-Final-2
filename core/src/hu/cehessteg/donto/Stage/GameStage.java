@@ -79,7 +79,7 @@ public class GameStage extends MyStage {
             @Override
             public void init() {
                 setFontScale(0.5f);
-                setPosition(0.1f,getViewport().getWorldHeight()*0.87f);
+                setPosition(12f,getViewport().getWorldHeight()*0.855f);
             }
 
             @Override
