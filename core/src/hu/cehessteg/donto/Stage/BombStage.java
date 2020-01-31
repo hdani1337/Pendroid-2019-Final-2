@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.cehessteg.donto.Actor.Explosion;
 import hu.cehessteg.donto.Actor.Vezetek;
+import hu.cehessteg.donto.Screen.GameScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
@@ -19,6 +20,8 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
 import static hu.cehessteg.donto.Actor.Gomb.trebuc;
+import static hu.cehessteg.donto.Actor.Vezetek.KEK_CUT;
+import static hu.cehessteg.donto.Actor.Vezetek.PIROS_CUT;
 
 public class BombStage extends MyStage {
 
@@ -129,4 +132,13 @@ public class BombStage extends MyStage {
         addActor(elvagando);
     }
 
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if(piros.getTexture() == game.getMyAssetManager().getTexture(PIROS_CUT) && kek.getTexture() == game.getMyAssetManager().getTexture(KEK_CUT))
+        {
+            game.setScreenWithPreloadAssets(GameScreen.class, new MyPreLoadingStage(game));
+            GameStage.currentID = 11;
+        }
+    }
 }

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 import hu.cehessteg.donto.Actor.Gomb;
 import hu.cehessteg.donto.Kerdes;
+import hu.cehessteg.donto.Screen.BombScreen;
+import hu.cehessteg.donto.Screen.RamsayScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
@@ -66,7 +68,6 @@ public class GameStage extends MyStage {
         isClicked = false;
 
         lives = 3;
-        currentID = 1;
 
         background = new OneSpriteStaticActor(game, BOOK_TEXTURE);
 
@@ -101,6 +102,10 @@ public class GameStage extends MyStage {
         gombBalA = new Gomb(game, kerdes, 3);
         gombJobbF = new Gomb(game, kerdes, 2);
         gombJobbA = new Gomb(game, kerdes, 4);
+
+        addedutso = false;
+        addedthird = false;
+        addedsecond = false;
     }
 
     private void setSizesAndPositions()
@@ -136,9 +141,13 @@ public class GameStage extends MyStage {
         if (isAct) {//Az isAct változó false lesz, ha a játékos veszít vagy megállítja, így ezek nem futnak le feleslegesen
             if(prevID != currentID){
                 setStuff();
+                second();
                 third();
+                if(currentID == 10) game.setScreenWithPreloadAssets(BombScreen.class, new MyPreLoadingStage(game));
+                if(currentID == 13) game.setScreenWithPreloadAssets(RamsayScreen.class, new MyPreLoadingStage(game));
                 if (currentID == 15) utso();
                 prevID = currentID;
+                System.out.println(currentID);
             }
             if(lives == 0) isAct = false;
         }
@@ -176,43 +185,79 @@ public class GameStage extends MyStage {
         addActor(gombJobbF);
     }
 
+    private boolean addedthird;
+
     private void third(){
         if(kerdes.id == 2){
-            kerdesLabel.addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    super.clicked(event, x, y);
-                    if(x > 600 && x < 680 && y > 0 && y < 50){
-                        addTimer(new TickTimer(0, false, new TickTimerListener() {
-                            @Override
-                            public void onTick(Timer sender, float correction) {
-                                super.onTick(sender, correction);
-                                currentID++;
-                                isClicked = false;
-                            }
-                        }));
+            if(!addedthird) {
+                kerdesLabel.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        if (x > 600 && x < 680 && y > 0 && y < 50) {
+                            addTimer(new TickTimer(0, false, new TickTimerListener() {
+                                @Override
+                                public void onTick(Timer sender, float correction) {
+                                    super.onTick(sender, correction);
+                                    currentID++;
+                                    isClicked = false;
+                                }
+                            }));
+                        }
                     }
-                }
-            });
+                });
+                addedthird = true;
+            }
         }
     }
 
-    private void utso(){
-        kerdesSzam.addListener(new ClickListener(){
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                System.out.println("bpodsépfksdéfkdslépfvkjysadléf");
-                addTimer(new TickTimer(0, false, new TickTimerListener() {
+    private boolean addedsecond;
+
+    private void second(){
+        if(kerdes.id == 1){
+            if(!addedsecond) {
+                kerdesSzam.addListener(new ClickListener() {
                     @Override
-                    public void onTick(Timer sender, float correction) {
-                        super.onTick(sender, correction);
-                        currentID++;
-                        isClicked = false;
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        if(kerdes.id == 1) {
+                            addTimer(new TickTimer(0, false, new TickTimerListener() {
+                                @Override
+                                public void onTick(Timer sender, float correction) {
+                                    super.onTick(sender, correction);
+                                    currentID++;
+                                    isClicked = false;
+                                }
+                            }));
+                            removeListener(this);
                         }
-                }));
+                    }
+                });
+                addedsecond = true;
             }
-        });
+        }
+    }
+
+    private boolean addedutso;
+
+    private void utso(){
+        if(!addedutso) {
+            kerdesSzam.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    super.clicked(event, x, y);
+                    addTimer(new TickTimer(0, false, new TickTimerListener() {
+                        @Override
+                        public void onTick(Timer sender, float correction) {
+                            super.onTick(sender, correction);
+                            currentID++;
+                            isClicked = false;
+                        }
+                    }));
+                }
+            });
+            addedutso = true;
+        }
 
     }
 }
