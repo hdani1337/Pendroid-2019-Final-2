@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Kerdes {
     public int id;
     public static ArrayList<String> kerdesek;
-    public ArrayList<Valasz> valaszokList;
+    public static ArrayList<Valasz> valaszokList;
 
     public Kerdes(int id){
         this.id = id-1;

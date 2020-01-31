@@ -15,10 +15,12 @@ public class Valasz {
         valaszok = new ArrayList<>();
         /**
          * ADD ANSWERS HERE SEPARATED WITH COMMAS FROM EACH OTHER
+         * CASE TEXT: THE TEXT OF THE ANSWER
+         * CASE PICTURE: THE HASH OF THE ASSET
          * **/
     }
 
-    public String getValaszok(int id){
-        return valaszok.get(id);
+    public String getValaszok(){
+        return valaszok.get(valaszID);
     }
 }
