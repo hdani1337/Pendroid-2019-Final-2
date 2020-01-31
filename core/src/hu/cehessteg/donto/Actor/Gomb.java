@@ -23,6 +23,7 @@ public class Gomb extends MyGroup {
     public static final String GOMB_TEXTURE = "other/valasz.png";
 
     public static AssetList assetList;
+
     static {
         assetList = new AssetList();
         assetList.addTexture(GOMB_TEXTURE);
@@ -31,39 +32,33 @@ public class Gomb extends MyGroup {
 
     public OneSpriteStaticActor gombActor;
     public MyLabel gombLabel;
-    public OneSpriteStaticActor gombPicture;
     public int gombID;
     public int kerdesID;
 
-    public enum ButtonType{
-        TEXT, PICTURE
-    }
-
-    public Gomb(MyGame game, ButtonType buttonType, int id, int kerdesID) {
+    public Gomb(MyGame game, Kerdes kerdes) {
         super(game);
-        this.gombID = id;
+        //this.gombID = id;
         this.kerdesID = kerdesID;
-        /*assignment(buttonType);
-        setPositions(buttonType);
+        assignment();
+        setPositions();
         addListener();
-        addActors(buttonType);*/
+        addActors();
     }
 
-    /*private void addListener(){
-        if(gombLabel != null) gombLabel.setTouchable(null);
-        if(gombPicture != null) gombPicture.setTouchable(null);
-        addListener(new ClickListener(){
+    private void addListener() {
+        if (gombLabel != null) gombLabel.setTouchable(null);
+        addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(Kerdes.valaszokList.get(kerdesID).isHelyes(gombID)){
+                /*if(){
                     //ZÖLD TEXTURE
                 }else {
                     //PIROS
                     GameStage.lives--;
-                }
+                }*/
                 //2mp múlva következő kérdés
-                gombActor.addTimer(new TickTimer(2f, false, new TickTimerListener(){
+                gombActor.addTimer(new TickTimer(2f, false, new TickTimerListener() {
                     @Override
                     public void onTick(Timer sender, float correction) {
                         super.onTick(sender, correction);
@@ -74,51 +69,35 @@ public class Gomb extends MyGroup {
         });
     }
 
-    private void assignment(ButtonType buttonType){
+    private void assignment() {
         gombActor = new OneSpriteStaticActor(game, GOMB_TEXTURE);
-        switch (buttonType){
-            case TEXT:{
-                gombLabel = new MyLabel(game,Kerdes.valaszokList.get(kerdesID-1).getValaszok().split(",")[gombID], new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
-                    @Override
-                    public void init() {
-                        setAlignment(0);
-                    }
-                };
-                break;
+
+        gombLabel = new MyLabel(game, "", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
+            @Override
+            public void init() {
+                setAlignment(0);
+                setText(text());
+            }
+        };
+    }
+
+    private String text(){
+        switch (kerdesID){
+            case 1:{
+
             }
 
-            case PICTURE:{
-                gombPicture = new OneSpriteStaticActor(game, Kerdes.valaszokList.get(kerdesID-1).getValaszok().split(",")[gombID]);
-                break;
-            }
+            default: return "";
         }
     }
 
-    private void setPositions(ButtonType buttonType){
-        gombActor.setPosition(0,0);
-        switch (buttonType){
-            case PICTURE:{
-                gombPicture.setPosition(gombActor.getX()+gombActor.getWidth()/2-gombPicture.getWidth()/2, gombActor.getY()+gombActor.getHeight()/2-gombPicture.getHeight()/2);
-            }
-
-            case TEXT:{
-                gombLabel.setPosition(gombActor.getX()+gombActor.getWidth()/2-gombLabel.getWidth()/2, gombActor.getY()+gombActor.getHeight()/2-gombLabel.getHeight()/2);
-                break;
-            }
-        }
+    private void setPositions() {
+        gombActor.setPosition(0, 0);
+        gombLabel.setPosition(gombActor.getX() + gombActor.getWidth() / 2 - gombLabel.getWidth() / 2, gombActor.getY() + gombActor.getHeight() / 2 - gombLabel.getHeight() / 2);
     }
 
-    private void addActors(ButtonType buttonType){
+    private void addActors() {
         addActor(gombActor);
-        switch (buttonType){
-            case PICTURE:{
-                addActor(gombPicture);
-            }
-
-            case TEXT:{
-                addActor(gombLabel);
-                break;
-            }
-        }
-    }*/
+        addActor(gombLabel);
+    }
 }

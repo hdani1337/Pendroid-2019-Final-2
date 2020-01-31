@@ -26,10 +26,12 @@ public class Kerdes {
     public void setValaszok(){
         switch (id){
             case 1:{
+                kerdes = kerdesek.get(id-1);
                 valasz1 = "Szék";
                 valasz2 = "Asztal";
                 valasz3 = "Kecske";
                 valasz4 = "Attila";
+                helyesID = 2;
             }
         }
     }

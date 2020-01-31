@@ -68,10 +68,10 @@ public class GameStage extends MyStage {
             }
         };
 
-        gombBalF = new Gomb(game, Gomb.ButtonType.TEXT,1, currentID);
-        gombBalA = new Gomb(game, Gomb.ButtonType.TEXT,3, currentID);
-        gombJobbF = new Gomb(game, Gomb.ButtonType.TEXT,2, currentID);
-        gombJobbA = new Gomb(game, Gomb.ButtonType.TEXT,4, currentID);
+        /*gombBalF = new Gomb(game, kerdes.valasz1, currentID);
+        gombBalA = new Gomb(game, kerdes.valasz3, currentID);
+        gombJobbF = new Gomb(game, kerdes.valasz2, currentID);
+        gombJobbA = new Gomb(game, kerdes.valasz4, currentID);*/
     }
 
     private void setSizesAndPositions()
