@@ -108,7 +108,7 @@ public class GameOverStage extends MyStage {
 
             if(alpha < 0.95)
             {
-                black.setAlpha(alpha * 0.4f);
+                black.setAlpha(alpha * 0.6f);
                 text.setColor(1,1,1,alpha);
                 again.setColor(1,1,1,alpha);
                 menu.setColor(1,1,1,alpha);

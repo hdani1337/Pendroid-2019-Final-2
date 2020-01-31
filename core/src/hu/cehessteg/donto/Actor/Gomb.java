@@ -17,6 +17,8 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
+import static hu.cehessteg.donto.Stage.GameStage.isAct;
+
 public class Gomb extends MyGroup {
 
     public static String trebuc = "DK Lemon Yellow Sun.otf";
@@ -55,20 +57,22 @@ public class Gomb extends MyGroup {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(kerdes.helyesID == gombID){
-                    gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_GOOD));
-                }else {
-                    gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_BAD));
-                    GameStage.lives--;
-                }
-                //1mp múlva következő kérdés
-                gombActor.addTimer(new TickTimer(1f, false, new TickTimerListener() {
-                    @Override
-                    public void onTick(Timer sender, float correction) {
-                        super.onTick(sender, correction);
-                        GameStage.currentID++;
+                if (isAct) {
+                    if (kerdes.helyesID == gombID) {
+                        gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_GOOD));
+                    } else {
+                        gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_BAD));
+                        GameStage.lives--;
                     }
-                }));
+                    //1mp múlva következő kérdés
+                    gombActor.addTimer(new TickTimer(1f, false, new TickTimerListener() {
+                        @Override
+                        public void onTick(Timer sender, float correction) {
+                            super.onTick(sender, correction);
+                            GameStage.currentID++;
+                        }
+                    }));
+                }
             }
         });
     }
