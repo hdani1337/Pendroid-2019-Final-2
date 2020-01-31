@@ -91,6 +91,9 @@ public class Kerdes {
             valasz4 = "";
             helyesID = 0;//kissebb-nagyobb pontok lesznek, de a kérdésben az i pontjára kellene rányomni...
         }
+        else if(id == 9){
+            //setstage to bombstage
+        }
         else if(id == 10){
             kerdes = "Ha van 6 almám és elveszel\nbelöle 4-et,\nakkor hány almád lesz?";
             valasz1 = "-2";
@@ -106,6 +109,9 @@ public class Kerdes {
             valasz3 = "Végtelenszer";
             valasz4 = "152szer";
             helyesID = 2;
+        }
+        else if(id == 12){
+            //setstage to GordonRamsayminigame
         }
         else if(id == 13){
             kerdes = "Mit loptak el az oroszok?";
