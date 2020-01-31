@@ -71,7 +71,7 @@ public class Gomb extends MyGroup {
                             @Override
                             public void onTick(Timer sender, float correction) {
                                 super.onTick(sender, correction);
-                                GameStage.currentID++;
+                                if(GameStage.currentID < 16) GameStage.currentID++;
                                 isClicked = false;
                             }
                         }));

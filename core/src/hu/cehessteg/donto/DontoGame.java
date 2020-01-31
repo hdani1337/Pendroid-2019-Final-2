@@ -18,7 +18,7 @@ public class DontoGame extends MyGame {
 	@Override
 	public void create() {
 		super.create();
-		setScreen(new GameScreen(this), true);
+		setScreen(new IntroScreen(this), true);
 		GameStage.currentID = 1;
 	}
 }

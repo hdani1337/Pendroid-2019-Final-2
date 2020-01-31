@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import hu.cehessteg.donto.Screen.GameScreen;
+import hu.cehessteg.donto.Screen.RamsayScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyStage;
@@ -98,7 +99,7 @@ public class GameOverStage extends MyStage {
     @Override
     public void act(float delta) {
 
-        if (!isAct){
+        if (!isAct || !RamsayStage.isAct){
             if(!addedActors){
                 addActor(black);
                 addActor(text);

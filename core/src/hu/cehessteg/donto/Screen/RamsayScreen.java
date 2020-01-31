@@ -20,6 +20,7 @@ public class RamsayScreen extends MyScreen {
     @Override
     protected void afterAssetsLoaded() {
         addStage(new RamsayStage(game),1,true);
+        addStage(new GameOverStage(game),2,true);
     }
 
     @Override
