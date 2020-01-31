@@ -66,7 +66,7 @@ public class GameStage extends MyStage {
         isClicked = false;
 
         lives = 3;
-        currentID = 1;
+        currentID = 14;
 
         background = new OneSpriteStaticActor(game, BOOK_TEXTURE);
 
@@ -78,7 +78,13 @@ public class GameStage extends MyStage {
         kerdesSzam = new MyLabel(game, kerdes.id + "", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
             @Override
             public void init() {
-                if (kerdes.id == 14) kerdesSzam.setText("??.");
+
+            }
+
+            @Override
+            public void act(float delta) {
+                super.act(delta);
+                if (kerdes.id == 14) kerdesSzam.setText("??");
             }
         };
 
@@ -108,7 +114,7 @@ public class GameStage extends MyStage {
         gombJobbA.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.4f);
         gombJobbF.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.2f);
 
-        kerdesSzam.setPosition(getViewport().getWorldWidth()-50, getViewport().getWorldHeight()*0.85f);
+        kerdesSzam.setPosition(getViewport().getWorldWidth()-70, getViewport().getWorldHeight()*0.85f);
     }
 
     private void addActors()
@@ -158,6 +164,7 @@ public class GameStage extends MyStage {
         gombBalA = new Gomb(game, kerdes, 3);
         gombJobbF = new Gomb(game, kerdes, 2);
         gombJobbA = new Gomb(game, kerdes, 4);
+        kerdesSzam.setText(kerdes.id);
         gombBalF.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.4f);
         gombBalA.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.2f);
         gombJobbA.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.4f);
@@ -191,21 +198,19 @@ public class GameStage extends MyStage {
     }
 
     private void utso(){
-        kerdesSzam.setRotation(180);
         kerdesSzam.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
-                if(x > kerdesSzam.getX() && x < kerdesSzam.getX() + kerdesSzam.getWidth() && y > kerdesSzam.getY() && y < kerdesSzam.getY() + kerdesSzam.getHeight()){
-                    addTimer(new TickTimer(0, false, new TickTimerListener() {
-                        @Override
-                        public void onTick(Timer sender, float correction) {
-                            super.onTick(sender, correction);
-                            currentID++;
-                            isClicked = false;
+                System.out.println("bpodsépfksdéfkdslépfvkjysadléf");
+                addTimer(new TickTimer(0, false, new TickTimerListener() {
+                    @Override
+                    public void onTick(Timer sender, float correction) {
+                        super.onTick(sender, correction);
+                        currentID++;
+                        isClicked = false;
                         }
-                    }));
-                }
+                }));
             }
         });
 
