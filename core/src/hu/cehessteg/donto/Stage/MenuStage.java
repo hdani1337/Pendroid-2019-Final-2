@@ -78,10 +78,6 @@ public class MenuStage extends MyStage {
         gombP = new OneSpriteStaticActor(game,GOMB_P);
         gombK = new OneSpriteStaticActor(game,GOMB_K);
 
-        //Logos
-
-
-
         //Labelek
 
         Cim = new MyLabel(game,"Notes",new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
@@ -94,21 +90,21 @@ public class MenuStage extends MyStage {
         Start = new MyLabel(game,"Start",new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.WHITE)) {
             @Override
             public void init() {
-
+                this.setTouchable(null);
             }
         };
 
         Infok = new MyLabel(game,"Infók",new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.WHITE)) {
             @Override
             public void init() {
-
+                this.setTouchable(null);
             }
         };
 
         Kilepes = new MyLabel(game,"Kilépés",new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.WHITE)) {
             @Override
             public void init() {
-
+                this.setTouchable(null);
             }
         };
 
@@ -164,10 +160,13 @@ public class MenuStage extends MyStage {
         //Labels
 
         Cim.setPosition(300,1000);
+
         Start.setPosition(300,800);
         Start.setFontScale(1.7f);
+
         Infok.setPosition(300,525);
         Infok.setFontScale(1.7f);
+
         Kilepes.setPosition(270,250);
         Kilepes.setFontScale(1.7f);
 

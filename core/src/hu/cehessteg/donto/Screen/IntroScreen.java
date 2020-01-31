@@ -1,5 +1,6 @@
 package hu.cehessteg.donto.Screen;
 
+import hu.cehessteg.donto.Stage.InfoStage;
 import hu.cehessteg.donto.Stage.IntroStage;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;

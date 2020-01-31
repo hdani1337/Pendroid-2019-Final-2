@@ -21,11 +21,13 @@ import static hu.cehessteg.donto.Actor.Gomb.trebuc;
 import static hu.cehessteg.donto.Stage.GameOverStage.BLANK_TEXTURE;
 
 public class InfoStage extends MyStage {
+    public static String trebuc = "fonts/handbold.otf";
+    public static String trebuc2 = "fonts/hand.otf";
     public static final String ZOLI_KEP = "portraits/zoli.png";
     public static final String BENCE_KEP = "portraits/bence.png";
     public static final String DANI_KEP = "portraits/dani.png";
     public static final String DAVID_KEP = "portraits/david.png";
-    public static final String LOGO = "logos/cehessteg.png";
+    public static final String HATTER_BG = "menu/hatter.png";
     public static AssetList assetList = new AssetList();
 
     static {
@@ -34,8 +36,9 @@ public class InfoStage extends MyStage {
         assetList.addTexture(DANI_KEP);
         assetList.addTexture(DAVID_KEP);
         assetList.addTexture(BLANK_TEXTURE);
-        assetList.addTexture(LOGO);
+        assetList.addTexture(HATTER_BG);
         assetList.addFont(trebuc, trebuc, 120, Color.WHITE, AssetList.CHARS);
+        assetList.addFont(trebuc2, trebuc2, 120, Color.WHITE, AssetList.CHARS);
     }
 
     //-----KÉPEK-----
@@ -43,7 +46,7 @@ public class InfoStage extends MyStage {
     private OneSpriteStaticActor bence;
     private OneSpriteStaticActor dani;
     private OneSpriteStaticActor david;
-    private OneSpriteStaticActor logo;
+    private OneSpriteStaticActor hatter;
     //---------------
 
     //-----NEVEK-----
@@ -62,14 +65,14 @@ public class InfoStage extends MyStage {
 
     //LEÍRÁS
     private MyLabel infoText;
+    private MyLabel informacio;
+    private MyLabel informacio2;
 
     //-----HÁTTÉR-----
     private OneSpriteStaticActor black;
     //----------------
 
     //VISSZA ÉS HÁTTERE
-    private MyLabel back;
-    private OneSpriteStaticActor blackBack;
 
     public InfoStage(MyGame game) {
         super(new ResponseViewport(800),game);
@@ -82,36 +85,32 @@ public class InfoStage extends MyStage {
     void assignment()
     {
         pictures();//KÉPEK
-        blackBack = new OneSpriteStaticActor(game,BLANK_TEXTURE);
         names();//NEVEK
         titles();//TITULUSOK
 
-        infoText = new MyLabel(game, "Az alkalmazás egy repülős játékot foglal magába, ahol le kell győzni az ellenséget!\nA repülőt bal oldalon lehet irányítani, a géppel lőni pedig jobb oldalon fent tudunk.\nBombázni is van lehetőség, azt pedig jobb oldalon alul tudjuk aktiválni!\nLehetőség van újítani a repülőt a Bolt menüpont alatt!\nAz első szinten nincsen fegyver, így az ellenség kikerülésével tudunk érmét szerezni!", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        infoText = new MyLabel(game, "Info", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
             @Override
             public void init() {
-                setFontScale(0.33f);
 
             }
         };
 
-        background();//ÉGBOLT ÉS FELHŐK
-
-        back = new MyLabel(game, "Vissza a menübe", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        informacio = new MyLabel(game, "Játék leírás:", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
             @Override
             public void init() {
-                setFontScale(0.4f);
-                setAlignment(Align.bottomLeft);
-                setPosition(30, 20);
-                addListener(new ClickListener()
-                {
-                    @Override
-                    public void clicked(InputEvent event, float x, float y) {
-                        super.clicked(event, x, y);
-                        game.setScreenBackByStackPopWithPreloadAssets(new MyPreLoadingStage(game));
-                    }
-                });
+
+
             }
         };
+        informacio2 = new MyLabel(game, "A játék quiz-szerüen van kialakítva, kérdésekre\n\nkell válaszolni, illetve van egy-egy mini-game is!", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
+            @Override
+            public void init() {
+
+
+            }
+        };
+
+
     }
 
     void pictures()
@@ -120,59 +119,58 @@ public class InfoStage extends MyStage {
         bence = new OneSpriteStaticActor(game,BENCE_KEP);
         dani = new OneSpriteStaticActor(game,DANI_KEP);
         david = new OneSpriteStaticActor(game,DAVID_KEP);
-        logo = new OneSpriteStaticActor(game,LOGO);
+        hatter = new OneSpriteStaticActor(game,HATTER_BG);
     }
 
     void names()
     {
-        zoliLabel = new MyLabel(game, "Miklós Zoltán", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        zoliLabel = new MyLabel(game, "Miklós Zoltán", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
             @Override
             public void init() {
-                setFontScale(0.4f);
+
 
             }
         };
-        benceLabel = new MyLabel(game, "Kutai Bence", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        benceLabel = new MyLabel(game, "Kutai Bence", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
             @Override
             public void init() {
-                setFontScale(0.4f);
+
             }
         };
-        daniLabel = new MyLabel(game, "Horváth Dániel", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        daniLabel = new MyLabel(game, "Horváth Dániel", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
             @Override
             public void init() {
-                setFontScale(0.4f);
+
             }
         };
-        davidLabel = new MyLabel(game, "Halász Dávid", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        davidLabel = new MyLabel(game, "Halász Dávid", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
             @Override
             public void init() {
-                setFontScale(0.4f);
             }
         };
     }
 
     void titles()
     {
-        zoliLabelTitle = new MyLabel(game, "Szoftverfejlesztő", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        zoliLabelTitle = new MyLabel(game, "Programozó", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
             @Override
             public void init() {
                 setFontScale(0.4f);
             }
         };
-        benceLabelTitle = new MyLabel(game, "Grafikus", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        benceLabelTitle = new MyLabel(game, "Grafikus", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
             @Override
             public void init() {
                 setFontScale(0.4f);
             }
         };
-        daniLabelTitle = new MyLabel(game, "Szoftverfejlesztő", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        daniLabelTitle = new MyLabel(game, "Programozó", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
             @Override
             public void init() {
                 setFontScale(0.4f);
             }
         };
-        davidLabelTitle = new MyLabel(game, "Szoftverfejlesztő", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        davidLabelTitle = new MyLabel(game, "Programozó", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc2), Color.BLACK)) {
             @Override
             public void init() {
                 setFontScale(0.4f);
@@ -180,23 +178,24 @@ public class InfoStage extends MyStage {
         };
     }
 
-    void background()
-    {
-        black = new OneSpriteStaticActor(game, BLANK_TEXTURE) {
-            @Override
-            public void init() {
-                super.init();
-                setSize(getViewport().getWorldWidth(), getViewport().getWorldHeight());
-            }
-        };
-    }
+
 
     void labelStuff()
     {
-        zoliLabelTitle.setFontScale(0.3f);
-        benceLabelTitle.setFontScale(0.3f);
-        daniLabelTitle.setFontScale(0.3f);
-        davidLabelTitle.setFontScale(0.30f);
+        informacio.setFontScale(0.5f);
+        informacio2.setFontScale(0.5f);
+
+        zoliLabel.setFontScale(0.5f);
+        benceLabel.setFontScale(0.5f);
+        daniLabel.setFontScale(0.5f);
+        davidLabel.setFontScale(0.5f);
+
+
+        zoliLabelTitle.setFontScale(0.5f);
+        benceLabelTitle.setFontScale(0.5f);
+        daniLabelTitle.setFontScale(0.5f);
+        davidLabelTitle.setFontScale(0.5f);
+
 
         zoliLabel.setAlignment(0);
         benceLabel.setAlignment(0);
@@ -213,30 +212,40 @@ public class InfoStage extends MyStage {
 
     void setPositions()
     {
-        zoli.setPosition(getViewport().getWorldWidth()/2-(zoli.getWidth()+bence.getWidth()+dani.getWidth()+david.getWidth()+450)/2,getViewport().getWorldHeight()/1.25f-zoli.getHeight()/2);
-        bence.setPosition(zoli.getX()+zoli.getWidth()+150,zoli.getY());
-        dani.setPosition(bence.getX()+bence.getWidth()+150,zoli.getY());
-        david.setPosition(dani.getX()+dani.getWidth()+150,zoli.getY());
-        logo.setPosition(getViewport().getWorldWidth()-this.getWidth()/6, 15);
+        //HATTER//
+       hatter.setPosition(0,0);
+        //CÍM,MAS//
+       infoText.setPosition(350,950);
+       informacio.setPosition(100,170);
+       informacio2.setPosition(100,20);
 
-        zoliLabel.setPosition(zoli.getX()+zoli.getWidth()/2-zoliLabel.getWidth()/2,zoli.getY()-100);
-        benceLabel.setPosition(bence.getX()+bence.getWidth()/2-benceLabel.getWidth()/2,bence.getY()-100);
-        daniLabel.setPosition(dani.getX()+dani.getWidth()/2-daniLabel.getWidth()/2,dani.getY()-100);
-        davidLabel.setPosition(david.getX()+david.getWidth()/2-davidLabel.getWidth()/2,david.getY()-100);
+       //KEPEK//
 
-        zoliLabelTitle.setPosition((zoliLabel.getX()+zoliLabel.getWidth()/2)-zoliLabelTitle.getWidth()/2,zoliLabel.getY()-45);
-        benceLabelTitle.setPosition((benceLabel.getX()+benceLabel.getWidth()/2)-benceLabelTitle.getWidth()/2,benceLabel.getY()-45);
-        daniLabelTitle.setPosition((daniLabel.getX()+daniLabel.getWidth()/2)-daniLabelTitle.getWidth()/2,daniLabel.getY()-45);
-        davidLabelTitle.setPosition((davidLabel.getX()+davidLabel.getWidth()/2)-davidLabelTitle.getWidth()/2,davidLabel.getY()-45);
+        zoli.setPosition(100,750);
+        bence.setPosition(550,750);
+        dani.setPosition(100,400);
+        david.setPosition(550,400);
 
-        infoText.setPosition(getViewport().getWorldWidth()/2-infoText.getWidth()/2,getViewport().getWorldHeight()/2-infoText.getHeight()/1.5f);
+        //NEVEK//
 
-        blackBack.setSize(back.getWidth()*0.48f, back.getHeight()*0.65f);
+        zoliLabel.setPosition(30,695);
+        benceLabel.setPosition(530,695);
+        daniLabel.setPosition(30,335);
+        davidLabel.setPosition(500,335);
+
+        //TITULUSOK//
+
+        zoliLabelTitle.setPosition(60,650);
+        benceLabelTitle.setPosition(570,650);
+        daniLabelTitle.setPosition(60,280);
+        davidLabelTitle.setPosition(510,280);
+
+
     }
 
     void addActors()
     {
-        addActor(black);
+        addActor(hatter);
 
         addActor(zoli);
         addActor(bence);
@@ -254,11 +263,12 @@ public class InfoStage extends MyStage {
         addActor(davidLabelTitle);
 
         addActor(infoText);
+        addActor(informacio);
+        addActor(informacio2);
 
-        addActor(blackBack);
-        addActor(back);
 
-        addActor(logo);
+
+
     }
 
 
@@ -280,7 +290,7 @@ public class InfoStage extends MyStage {
         bence.setAlpha(alpha);
         dani.setAlpha(alpha);
         david.setAlpha(alpha);
-        logo.setAlpha(alpha);
+
 
         zoliLabel.setColor(1,1,1, alpha);
         benceLabel.setColor(1,1,1, alpha);
@@ -293,11 +303,11 @@ public class InfoStage extends MyStage {
         davidLabelTitle.setColor(1,1,1, alpha);
 
         infoText.setColor(1,1,1, alpha);
+        informacio.setColor(1,1,1,alpha);
+        informacio2.setColor(1,1,1,alpha);
 
-        back.setColor(1,1,1, alpha);
 
-        black.setAlpha(alpha * 0.4f);
-        blackBack.setAlpha(alpha * 0.5f);
+       hatter.setAlpha(alpha);
     }
 
     @Override
