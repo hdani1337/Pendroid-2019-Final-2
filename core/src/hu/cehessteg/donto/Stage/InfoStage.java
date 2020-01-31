@@ -72,7 +72,7 @@ public class InfoStage extends MyStage {
     private OneSpriteStaticActor blackBack;
 
     public InfoStage(MyGame game) {
-        super(new ResponseViewport(900),game);
+        super(new ResponseViewport(800),game);
         assignment();
         labelStuff();
         setPositions();
