@@ -22,7 +22,7 @@ import static hu.cehessteg.donto.Stage.GameStage.isClicked;
 
 public class Gomb extends MyGroup {
 
-    public static String trebuc = "DK Lemon Yellow Sun.otf";
+    public static String trebuc = "fonts/hand.otf";
     public static final String GOMB_TEXTURE = "other/valasz.png";
     public static final String GOMB_TEXTURE_GOOD = "other/valasz_zold.png";
     public static final String GOMB_TEXTURE_BAD = "other/valasz_piros.png";
