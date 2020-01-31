@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
+import hu.cehessteg.donto.Actor.Gomb;
 import hu.cehessteg.donto.Screen.MenuScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
@@ -29,6 +30,7 @@ public class IntroStage extends MyStage {
         assetList.addTexture(PENDROID_TEXTURE);
         assetList.addTexture(CSAPAT_TEXTURE).protect = true;
         assetList.addFont(trebuc, trebuc, 120, Color.WHITE, AssetList.CHARS);
+        assetList.collectAssetDescriptor(Gomb.class, assetList);
     }
 
     private OneSpriteStaticActor gdxLogo;
@@ -79,6 +81,7 @@ public class IntroStage extends MyStage {
         addActor(copyright);
 
         for (Actor actor : getActors()) actor.setColor(1,1,1,0);
+        addActor(new Gomb(game));
     }
 
     float alpha = 0;
