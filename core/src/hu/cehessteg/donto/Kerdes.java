@@ -4,7 +4,6 @@ package hu.cehessteg.donto;
 import java.util.ArrayList;
 
 public class Kerdes {
-    public static ArrayList<String> kerdesek = new ArrayList<>();
     public int id;
     public String kerdes;
     public int helyesID;
@@ -19,20 +18,14 @@ public class Kerdes {
         setValaszok();
     }
 
-    public static void addQuestions(){
-        kerdesek.add("Mi az, négy lába van, asztal de nem szék?");
-    }
-
     public void setValaszok(){
-        switch (id){
-            case 1:{
-                kerdes = kerdesek.get(id-1);
-                valasz1 = "Szék";
-                valasz2 = "Asztal";
-                valasz3 = "Kecske";
-                valasz4 = "Attila";
-                helyesID = 2;
-            }
+        if(id == 0){
+            kerdes = "Mi az, négy lába van, asztal de nem szék?";
+            valasz1 = "Szék";
+            valasz2 = "Asztal";
+            valasz3 = "Kecske";
+            valasz4 = "Attila";
+            helyesID = 2;
         }
     }
 }

@@ -58,9 +58,9 @@ public class GameStage extends MyStage {
         currentID = 1;
 
         kerdesek = new ArrayList<>();
-        kerdes = new Kerdes(currentID-1);
+        kerdes = new Kerdes(currentID);
 
-        kerdesLabel = new MyLabel(game, " ", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
+        kerdesLabel = new MyLabel(game, kerdes.kerdes, new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
             @Override
             public void init() {
                 setAlignment(0);
@@ -79,8 +79,6 @@ public class GameStage extends MyStage {
         /**SIZES**/
 
         /**POSITIONS**/
-        /*kerdes.setAlignment(0);
-        kerdes.setPosition(getViewport().getWorldWidth()/2-kerdes.getWidth()/2,getViewport().getWorldHeight()*0.7f);*/
         gombBalF.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.5f);
         gombBalA.setPosition(getViewport().getWorldWidth()/2-375, getViewport().getWorldHeight()*0.2f);
         gombJobbA.setPosition(getViewport().getWorldWidth()/2+30, getViewport().getWorldHeight()*0.5f);
@@ -89,7 +87,7 @@ public class GameStage extends MyStage {
 
     private void addActors()
     {
-        //addActor(kerdes);
+        addActor(kerdesLabel);
         addActor(gombBalF);
         addActor(gombBalA);
         addActor(gombJobbA);
@@ -103,19 +101,11 @@ public class GameStage extends MyStage {
         super.act(delta);
         if (isAct) {//Az isAct változó false lesz, ha a játékos veszít vagy megállítja, így ezek nem futnak le feleslegesen
             if(prevID != currentID){
-                kerdesClass = new Kerdes(currentID);
-                /*kerdes = new MyLabel(game, Kerdes.kerdesek.get(kerdesClass.id), new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.BLACK)) {
-                    @Override
-                    public void init() {
-                        setAlignment(0);
-                        //kerdes.setPosition(getViewport().getWorldWidth()/2-kerdes.getWidth()/2,getViewport().getWorldHeight()*0.7f);
-                    }
-                };*/
-/*
-                gombBalF = new Gomb(game, Valasz.valaszokTypes.get(0),1, currentID);
-                gombBalA = new Gomb(game, Valasz.valaszokTypes.get(2),3, currentID);
-                gombJobbF = new Gomb(game, Valasz.valaszokTypes.get(1),2, currentID);
-                gombJobbA = new Gomb(game, Valasz.valaszokTypes.get(3),4, currentID);*/
+                kerdes = new Kerdes(currentID);
+                gombBalF = new Gomb(game, kerdes, 1);
+                gombBalA = new Gomb(game, kerdes, 3);
+                gombJobbF = new Gomb(game, kerdes, 2);
+                gombJobbA = new Gomb(game, kerdes, 4);
             }
         }
         else{
