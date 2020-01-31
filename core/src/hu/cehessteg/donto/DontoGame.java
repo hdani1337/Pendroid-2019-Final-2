@@ -1,8 +1,12 @@
 package hu.cehessteg.donto;
 
+import com.badlogic.gdx.Game;
+
+import hu.cehessteg.donto.Screen.BombScreen;
 import hu.cehessteg.donto.Screen.GameScreen;
 import hu.cehessteg.donto.Screen.IntroScreen;
 import hu.cehessteg.donto.Screen.MenuScreen;
+import hu.cehessteg.donto.Screen.RamsayScreen;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 
 public class DontoGame extends MyGame {
@@ -13,6 +17,6 @@ public class DontoGame extends MyGame {
 	@Override
 	public void create() {
 		super.create();
-		setScreen(new MenuScreen(this), false);
+		setScreen(new BombScreen(this), false);
 	}
 }

@@ -21,6 +21,7 @@ public class GameScreen extends MyScreen {
     protected void afterAssetsLoaded() {
         addStage(new GameStage(game),1,true);
         addStage(new GameOverStage(game),4,true);
+        GameStage.isAct = true;
     }
 
     @Override

@@ -66,7 +66,7 @@ public class GameStage extends MyStage {
         isClicked = false;
 
         lives = 3;
-        currentID = 14;
+        currentID = 1;
 
         background = new OneSpriteStaticActor(game, BOOK_TEXTURE);
 
