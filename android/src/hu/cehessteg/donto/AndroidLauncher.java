@@ -15,7 +15,7 @@ public class AndroidLauncher extends AndroidApplication {
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.useWakelock = true;
-		initialize(new DontoGame(), config);
+		initialize(new DontoGame(false), config);
 		hideVirtualButtons();
 	}
 

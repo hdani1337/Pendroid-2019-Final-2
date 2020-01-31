@@ -18,6 +18,7 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
 import static hu.cehessteg.donto.Stage.GameStage.isAct;
+import static hu.cehessteg.donto.Stage.GameStage.isClicked;
 
 public class Gomb extends MyGroup {
 
@@ -58,20 +59,24 @@ public class Gomb extends MyGroup {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 if (isAct) {
-                    if (kerdes.helyesID == gombID) {
-                        gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_GOOD));
-                    } else {
-                        gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_BAD));
-                        GameStage.lives--;
-                    }
-                    //1mp múlva következő kérdés
-                    gombActor.addTimer(new TickTimer(1f, false, new TickTimerListener() {
-                        @Override
-                        public void onTick(Timer sender, float correction) {
-                            super.onTick(sender, correction);
-                            GameStage.currentID++;
+                    if(!isClicked) {
+                        if (kerdes.helyesID == gombID) {
+                            gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_GOOD));
+                        } else {
+                            gombActor.sprite.setTexture(game.getMyAssetManager().getTexture(GOMB_TEXTURE_BAD));
+                            GameStage.lives--;
                         }
-                    }));
+                        //1mp múlva következő kérdés
+                        gombActor.addTimer(new TickTimer(1f, false, new TickTimerListener() {
+                            @Override
+                            public void onTick(Timer sender, float correction) {
+                                super.onTick(sender, correction);
+                                GameStage.currentID++;
+                                isClicked = false;
+                            }
+                        }));
+                        isClicked = true;
+                    }
                 }
             }
         });
@@ -87,6 +92,30 @@ public class Gomb extends MyGroup {
                 setText(text());
             }
         };
+
+        if(kerdes.id == 3){
+            switch (text()){
+                case "Zöld":{
+                    gombActor.setColor(Color.BLUE);
+                    break;
+                }
+
+                case "Kék":{
+                    gombActor.setColor(Color.RED);
+                    break;
+                }
+
+                case "Lila":{
+                    gombActor.setColor(Color.PURPLE);
+                    break;
+                }
+
+                case "Piros":{
+                    gombActor.setColor(Color.GREEN);
+                    break;
+                }
+            }
+        }
     }
 
     private String text(){
