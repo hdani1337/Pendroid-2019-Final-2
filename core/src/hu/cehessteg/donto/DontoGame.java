@@ -21,5 +21,13 @@ public class DontoGame extends MyGame {
 		super.create();
 		setScreen(new IntroScreen(this), true);
 		GameStage.currentID = 1;
+		/**
+		 * A játék lényege az, hogy a kérdésekre minél pontosabban válaszoljunk minél gyorsabban
+		 * A játékos maximum háromszor hibázhat
+		 * A játék tartalmaz 2 mini játékot
+		 * 	Az egyikben egy bombát kell hatástalanítani
+		 * 	A másikban Gordon Ramsayt kell felidegesíteni
+		 * 15 kérdésre kell válaszolni, ha a játékosnak marad élete, megnyeri a játékot
+		 * **/
 	}
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import hu.cehessteg.donto.Actor.Gomb;
 import hu.cehessteg.donto.Kerdes;
 import hu.cehessteg.donto.Screen.BombScreen;
+import hu.cehessteg.donto.Screen.MenuScreen;
 import hu.cehessteg.donto.Screen.RamsayScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
@@ -165,6 +166,7 @@ public class GameStage extends MyStage {
                 System.out.println(currentID);
             }
             if(lives == 0) isAct = false;
+            if(currentID >= 16) game.setScreenWithPreloadAssets(MenuScreen.class, new MyPreLoadingStage(game));
         }
     }
 
