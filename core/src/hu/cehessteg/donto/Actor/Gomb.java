@@ -93,6 +93,46 @@ public class Gomb extends MyGroup {
             }
         };
 
+        if(kerdes.id == 4){
+            gombLabel.setVisible(false);
+            if(gombID == 1){
+                gombActor.addTimer(new TickTimer(1.3f, false, new TickTimerListener(){
+                    @Override
+                    public void onTick(Timer sender, float correction) {
+                        super.onTick(sender, correction);
+                        gombLabel.setVisible(true);
+                    }
+                }));
+            }
+            else if(gombID == 2){
+                gombActor.addTimer(new TickTimer(0.8f, false, new TickTimerListener(){
+                    @Override
+                    public void onTick(Timer sender, float correction) {
+                        super.onTick(sender, correction);
+                        gombLabel.setVisible(true);
+                    }
+                }));
+            }
+            else if(gombID == 3){
+                gombActor.addTimer(new TickTimer(0.5f, false, new TickTimerListener(){
+                    @Override
+                    public void onTick(Timer sender, float correction) {
+                        super.onTick(sender, correction);
+                        gombLabel.setVisible(true);
+                    }
+                }));
+            }
+            else if(gombID == 4){
+                gombActor.addTimer(new TickTimer(1f, false, new TickTimerListener(){
+                    @Override
+                    public void onTick(Timer sender, float correction) {
+                        super.onTick(sender, correction);
+                        gombLabel.setVisible(true);
+                    }
+                }));
+            }
+        }
+
         if(kerdes.id == 3){
             switch (text()){
                 case "Zöld":{
