@@ -40,8 +40,7 @@ public class IntroStage extends MyStage {
     private MyLabel copyright;
 
     public IntroStage(MyGame game) {
-        super(new ResponseViewport(900), game);
-
+        super(new ResponseViewport(800), game);
         assignment();
         setPositions();
         addActors();
@@ -81,7 +80,6 @@ public class IntroStage extends MyStage {
         addActor(copyright);
 
         for (Actor actor : getActors()) actor.setColor(1,1,1,0);
-        addActor(new Gomb(game));
     }
 
     float alpha = 0;

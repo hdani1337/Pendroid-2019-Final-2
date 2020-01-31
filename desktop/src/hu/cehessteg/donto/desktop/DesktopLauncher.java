@@ -8,7 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new DontoGame(), config);
-		config.width = 640;
-		config.height = 400;
+		config.width = 400;
+		config.height = 640;
 	}
 }

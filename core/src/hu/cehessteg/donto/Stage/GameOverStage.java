@@ -33,7 +33,7 @@ public class GameOverStage extends MyStage {
     OneSpriteStaticActor black;
 
     public GameOverStage(MyGame game) {
-        super(new ResponseViewport(900),game);
+        super(new ResponseViewport(800),game);
         addedActors = false;
 
         text = new MyLabel(game, "Vége a játéknak", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {

@@ -27,7 +27,7 @@ public class MenuStage extends MyStage {
 
 
     public MenuStage(final MyGame game) {
-        super(new ResponseViewport(900), game);
+        super(new ResponseViewport(800), game);
         addBackButtonListener(new BackButtonListener() {
             @Override
             public void backKeyDown() {

@@ -17,7 +17,7 @@ public class MyPreLoadingStage extends hu.csanyzeg.master.MyBaseClasses.Assets.L
     }
 
     public MyPreLoadingStage(MyGame game) {
-        super(new ResponseViewport(900), game);
+        super(new ResponseViewport(800), game);
         addActor(new OneSpriteStaticActor(game, CSAPAT_TEXTURE) {
             @Override
             public void init() {
