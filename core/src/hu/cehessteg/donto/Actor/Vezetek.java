@@ -1,5 +1,10 @@
 package hu.cehessteg.donto.Actor;
 
+import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+
+import hu.cehessteg.donto.Stage.GameStage;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -36,19 +41,19 @@ public class Vezetek extends OneSpriteStaticActor {
         assetList.addTexture(PIROS_CUT);
     }
 
-    private static String szin;
-
     public Vezetek(MyGame game, String szin) {
-        super(game, getHash(false));
-        this.szin = szin;
+        super(game, getHash(false, szin));
+        addListeners(szin);
+        setHeight(getHeight()*0.77f);
     }
 
-    private static String getHash(boolean elvagva){
-        if(elvagva){
-            if(szin == "piros") return PIROS;
-            else if(szin == "kék") return KEK;
-            else if(szin == "zöld") return ZOLD;
-            else if(szin == "sárga") return SARGA;
+    private static String getHash(boolean elvagva, String szin){
+        System.out.println(szin);
+        if(!elvagva){
+            if(szin.equals("piros")) return PIROS;
+            else if(szin.equals("kék")) return KEK;
+            else if(szin.equals("zöld")) return ZOLD;
+            else if(szin.equals("sárga")) return SARGA;
             else return LILA;
         }
         else{
@@ -56,7 +61,26 @@ public class Vezetek extends OneSpriteStaticActor {
             else if(szin == "kék") return KEK_CUT;
             else if(szin == "zöld") return ZOLD_CUT;
             else if(szin == "sárga") return SARGA_CUT;
-            else return LILA;
+            else return LILA_CUT;
         }
+    }
+
+    public void szakad(String szin){
+        if(GameStage.isAct) {
+            sprite.setTexture(game.getMyAssetManager().getTexture(getHash(true, szin)));
+            if(szin != "Kék" && szin != "piros"){
+                GameStage.isAct = false;
+            }
+        }
+    }
+
+    private void addListeners(final String szin){
+        addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                szakad(szin);
+            }
+        });
     }
 }
