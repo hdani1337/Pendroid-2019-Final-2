@@ -7,7 +7,7 @@ import hu.cehessteg.donto.DontoGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		new LwjglApplication(new DontoGame(), config);
+		new LwjglApplication(new DontoGame(false), config);
 		config.width = 400;
 		config.height = 640;
 	}

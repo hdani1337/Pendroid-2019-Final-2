@@ -59,6 +59,14 @@ public class Kerdes {
             valasz4 = "";//Utánna meg 1 sec delay mindre...
             helyesID = 3;
         }
+        else if(id == 5){
+            kerdes = "Melyik a jegesmedve kedvence?";
+            valasz1 = "Pingvin";
+            valasz2 = "Hal";
+            valasz3 = "Rozmár";
+            valasz4 = "Fóka";
+            helyesID = 2;
+        }
         else if(id == 6){
             kerdes = "Melyik a kakukktojás?";
             valasz1 = "Apple";
@@ -122,7 +130,7 @@ public class Kerdes {
             valasz3 = "Farkas";
             valasz4 = "Java";
             helyesID = 0;//lehetőleg fejjel lefelé legyen a kérdés száma feltüntetve, ha nem akkor csak 51.
-        }//hiányzik az 5,9,12
+        }//hiányzik az 9,12
 
 
     }
