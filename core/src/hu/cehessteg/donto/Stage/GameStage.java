@@ -143,6 +143,7 @@ public class GameStage extends MyStage {
                 setStuff();
                 second();
                 third();
+                eigth();
                 if(currentID == 10) game.setScreenWithPreloadAssets(BombScreen.class, new MyPreLoadingStage(game));
                 if(currentID == 13) game.setScreenWithPreloadAssets(RamsayScreen.class, new MyPreLoadingStage(game));
                 if (currentID == 15) utso();
@@ -207,6 +208,35 @@ public class GameStage extends MyStage {
                     }
                 });
                 addedthird = true;
+            }
+        }
+    }
+
+    private boolean addedeigth;
+
+    private void eigth(){
+        if(kerdes.id == 8){
+            if(!addedeigth) {
+                kerdesLabel.addListener(new ClickListener() {
+                    @Override
+                    public void clicked(InputEvent event, float x, float y) {
+                        super.clicked(event, x, y);
+                        if(kerdes.id == 8) {
+                            if (x > 815 && x < 860 && y > 0 && y < 40) {
+                                addTimer(new TickTimer(0, false, new TickTimerListener() {
+                                    @Override
+                                    public void onTick(Timer sender, float correction) {
+                                        super.onTick(sender, correction);
+                                        currentID++;
+                                        isClicked = false;
+                                    }
+                                }));
+                                removeListener(this);
+                            }
+                        }
+                    }
+                });
+                addedeigth = true;
             }
         }
     }

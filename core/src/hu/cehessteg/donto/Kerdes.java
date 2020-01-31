@@ -53,10 +53,10 @@ public class Kerdes {
         }
         else if(id == 4){
             kerdes = "Melyik a gyorsabb?";
-            valasz1 = "";//felvillan 0,5 secre mind
-            valasz2 = "";//egymás után
-            valasz3 = "";//ez legyen először
-            valasz4 = "";//Utánna meg 1 sec delay mindre...
+            valasz1 = "Ez";//felvillan 0,5 secre mind
+            valasz2 = "Ez";//egymás után
+            valasz3 = "Ez";//ez legyen először
+            valasz4 = "Ez";//Utánna meg 1 sec delay mindre...
             helyesID = 3;
         }
         else if(id == 5){
@@ -85,10 +85,10 @@ public class Kerdes {
         }
         else if(id == 8){
             kerdes = "Melyik a legkissebb pont?";
-            valasz1 = "";
-            valasz2 = "";
-            valasz3 = "";
-            valasz4 = "";
+            valasz1 = ".";
+            valasz2 = "!";
+            valasz3 = "A kérdőjelé";
+            valasz4 = ":";
             helyesID = 0;//kissebb-nagyobb pontok lesznek, de a kérdésben az i pontjára kellene rányomni...
         }
         else if(id == 9){

@@ -57,8 +57,10 @@ public class GameOverStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        if(getScreen() != null)
-                            game.setScreenWithPreloadAssets(GameScreen.class,false, new MyPreLoadingStage(game));
+                        if(getScreen() != null) {
+                            GameStage.currentID = 1;
+                            game.setScreenWithPreloadAssets(GameScreen.class, false, new MyPreLoadingStage(game));
+                        }
                     }
                 });
             }
