@@ -36,7 +36,7 @@ public class RamsayStage extends MyStage {
         addActors();
     }
 
-    float sec = 7;
+    float sec = 9;
 
     private void assignment(){
         isAct = true;
@@ -49,7 +49,7 @@ public class RamsayStage extends MyStage {
             }
         };
 
-        clock = new MyLabel(game,"00:07", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
+        clock = new MyLabel(game,"00:09", new Label.LabelStyle(game.getMyAssetManager().getFont(trebuc), Color.WHITE)) {
             @Override
             public void init() {
                 setAlignment(0);
@@ -62,7 +62,7 @@ public class RamsayStage extends MyStage {
                 if(GameStage.isAct) {
                     if(sec > 0)sec -= delta;
                     setText("00:0" + (int) sec);
-                    if (sec <= 0 && ramsay.rage < 40) {
+                    if (sec <= 0 && ramsay.rage < 45) {
                         isAct = false;
                     }
                 }

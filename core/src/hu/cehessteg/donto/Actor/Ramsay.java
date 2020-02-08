@@ -1,5 +1,6 @@
 package hu.cehessteg.donto.Actor;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
@@ -54,7 +55,7 @@ public class Ramsay extends OneSpriteStaticActor {
             public void clicked(InputEvent event, float x, float y) {
                 super.clicked(event, x, y);
                 rage++;
-                if(rage >= 40) {
+                if(rage >= 45) {
                     addTimer(new TickTimer(2, true, new TickTimerListener() {
                         @Override
                         public void onTick(Timer sender, float correction) {
@@ -65,11 +66,12 @@ public class Ramsay extends OneSpriteStaticActor {
 
                     }));
                     game.getMyAssetManager().getSound(RAMSAY_5S).play();
+                    setColor(Color.GREEN);
                 }
-                else if(rage >= 30) {
+                else if(rage >= 25) {
                     game.getMyAssetManager().getSound(RAMSAY_4S).play();
                 }
-                else if (rage >= 20) {
+                else if (rage >= 15) {
                     game.getMyAssetManager().getSound(RAMSAY_3S).play();
                 }
                 else if (rage >= 10) {
@@ -82,15 +84,15 @@ public class Ramsay extends OneSpriteStaticActor {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(rage >= 40) {
+        if(rage >= 35) {
             if (getTexture() != game.getMyAssetManager().getTexture(RAMSAY_5))
                 sprite.setTexture(game.getMyAssetManager().getTexture(RAMSAY_5));
         }
-        if(rage >= 30) {
+        else if(rage >= 25) {
             if (getTexture() != game.getMyAssetManager().getTexture(RAMSAY_4))
                 sprite.setTexture(game.getMyAssetManager().getTexture(RAMSAY_4));
         }
-        else if (rage >= 20) {
+        else if (rage >= 15) {
                 if (getTexture() != game.getMyAssetManager().getTexture(RAMSAY_3))
                     sprite.setTexture(game.getMyAssetManager().getTexture(RAMSAY_3));
             }
@@ -98,7 +100,7 @@ public class Ramsay extends OneSpriteStaticActor {
             if (getTexture() != game.getMyAssetManager().getTexture(RAMSAY_2))
                 sprite.setTexture(game.getMyAssetManager().getTexture(RAMSAY_2));
         }
-        else if (rage >= 0) {
+        else if (rage >= 5) {
             if (getTexture() != game.getMyAssetManager().getTexture(RAMSAY_1))
                 sprite.setTexture(game.getMyAssetManager().getTexture(RAMSAY_1));
         }

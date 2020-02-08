@@ -70,8 +70,6 @@ public class GameStage extends MyStage {
         isAct = true;
         isClicked = false;
 
-        lives = 3;
-
         background = new OneSpriteStaticActor(game, BOOK_TEXTURE);
 
         kerdesek = new ArrayList<>();
@@ -107,7 +105,7 @@ public class GameStage extends MyStage {
             public void init() {
                 setFontScale(0.7f);
                 setAlignment(0);
-                setPosition(getViewport().getWorldWidth()/2-getWidth()/2,getViewport().getWorldHeight()*0.7f);
+                setPosition(getViewport().getWorldWidth()/2-getWidth()/2,getViewport().getWorldHeight()*0.62f);
             }
         };
 
@@ -154,19 +152,23 @@ public class GameStage extends MyStage {
         super.act(delta);
         if (isAct) {//Az isAct változó false lesz, ha a játékos veszít vagy megállítja, így ezek nem futnak le feleslegesen
             if(prevID != currentID){
-                setStuff();
-                second();
-                third();
-                eigth();
-                Életszám.setText("Életek száma: " + lives);
-                if(currentID == 10) game.setScreenWithPreloadAssets(BombScreen.class, new MyPreLoadingStage(game));
-                if(currentID == 13) game.setScreenWithPreloadAssets(RamsayScreen.class, new MyPreLoadingStage(game));
-                if (currentID == 15) utso();
-                prevID = currentID;
-                System.out.println(currentID);
+                if(currentID >= 17) game.setScreenWithPreloadAssets(MenuScreen.class, new MyPreLoadingStage(game));
+                else {
+                    setStuff();
+                    second();
+                    third();
+                    eigth();
+                    Életszám.setText("Életek száma: " + lives);
+                    if (currentID == 10)
+                        game.setScreenWithPreloadAssets(BombScreen.class, new MyPreLoadingStage(game));
+                    else if (currentID == 13)
+                        game.setScreenWithPreloadAssets(RamsayScreen.class, new MyPreLoadingStage(game));
+                    else if (currentID == 16) utso();
+                    prevID = currentID;
+                    System.out.println(currentID);
+                }
             }
             if(lives == 0) isAct = false;
-            if(currentID >= 16) game.setScreenWithPreloadAssets(MenuScreen.class, new MyPreLoadingStage(game));
         }
     }
 
@@ -302,6 +304,7 @@ public class GameStage extends MyStage {
                     }));
                 }
             });
+            kerdesSzam.setText("51");
             addedutso = true;
         }
 

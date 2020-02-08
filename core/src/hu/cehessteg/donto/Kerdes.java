@@ -49,7 +49,7 @@ public class Kerdes {
             valasz2 = "Kék";//piros háttér
             valasz3 = "Lila";//Lila háttér
             valasz4 = "Piros";//Zöld háttér
-            helyesID = 2;
+            helyesID = 1;
         }
         else if(id == 4){
             kerdes = "Melyik a gyorsabb?";
@@ -65,7 +65,7 @@ public class Kerdes {
             valasz2 = "Hal";
             valasz3 = "Rozmár";
             valasz4 = "Fóka";
-            helyesID = 2;
+            helyesID = 4;
         }
         else if(id == 6){
             kerdes = "Melyik a kakukktojás?";
@@ -99,15 +99,15 @@ public class Kerdes {
             valasz1 = "-2";
             valasz2 = "2";
             valasz3 = "-6";
-            valasz4 = "-4";
+            valasz4 = "4";
             helyesID = 4;
         }
         else if(id == 11){
             kerdes = "Hányszor lehet maximum\nelfelezni egy papír lapot?";
-            valasz1 = "13szor";
-            valasz2 = "1szer";
+            valasz1 = "13-szor";
+            valasz2 = "Egyszer";
             valasz3 = "Végtelenszer";
-            valasz4 = "152szer";
+            valasz4 = "152-szer";
             helyesID = 2;
         }
         else if(id == 12){

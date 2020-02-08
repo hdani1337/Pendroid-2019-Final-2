@@ -56,7 +56,7 @@ public class BombStage extends MyStage {
         addActors();
     }
 
-    float sec = 30;
+    float sec = 10;
 
     private void assignment(){
         GameStage.isAct = true;

@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import hu.cehessteg.donto.Screen.GameScreen;
+import hu.cehessteg.donto.Screen.MenuScreen;
 import hu.cehessteg.donto.Screen.RamsayScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
@@ -80,7 +81,7 @@ public class GameOverStage extends MyStage {
                     @Override
                     public void clicked(InputEvent event, float x, float y) {
                         super.clicked(event, x, y);
-                        game.setScreenBackByStackPopWithPreloadAssets(new MyPreLoadingStage(game));
+                        game.setScreenWithPreloadAssets(MenuScreen.class,new MyPreLoadingStage(game));
                     }
                 });
             }

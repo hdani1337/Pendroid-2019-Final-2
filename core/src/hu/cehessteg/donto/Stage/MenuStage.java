@@ -119,6 +119,10 @@ public class MenuStage extends MyStage {
 
             public void clicked(InputEvent event,float x, float y){
                 super.clicked(event,x,y);
+                GameStage.currentID = 1;
+                GameStage.isAct = true;
+                RamsayStage.isAct = true;
+                GameStage.lives = 3;
                 game.setScreenWithPreloadAssets(GameScreen.class, new MyPreLoadingStage(game));
             }
         });
